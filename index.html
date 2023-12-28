@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grocery Store</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <!-- Header Section -->
+  <header>
+    <script>
+    let cartItems = [];
+        let cartTotal = 0;
+        
+        function addToCart(itemName, itemPrice) {
+          cartItems.push({ name: itemName, price: itemPrice });
+          cartTotal += itemPrice;
+        
+          updateCartUI();
+        }
+        
+        function clearCart() {
+          cartItems = [];
+          cartTotal = 0;
+        
+          updateCartUI();
+        }
+        
+        function updateCartUI() {
+          const cartItemsList = document.getElementById('cart-items');
+          const cartTotalSpan = document.getElementById('cart-total');
+        
+          cartItemsList.innerHTML = '';
+          cartItems.forEach(item => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `${item.name} - $${item.price}`;
+            cartItemsList.appendChild(listItem);
+          });
+        
+          cartTotalSpan.textContent = `$${cartTotal}`;
+        }
+        </script>
+    <div class="logo">Grocery Store</div>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Products</a></li>
+        <li><a href="#">Cart</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Welcome to Our Grocery Store</h1>
+      <p>Find fresh and high-quality groceries at the best prices.</p>
+      <a href="#" class="btn">Explore Products</a>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section class="products">
+    <div class="product">
+      <img src="product1.jpg" alt="Product 1">
+      <h2>Product 1</h2>
+      <p>Price: $5</p>
+      <button class="btn" onclick="addToCart('Product 1', 5)">Add to Cart</button>
+    </div>
+    <div class="product">
+      <img src="product2.jpg" alt="Product 2">
+      <h2>Product 2</h2>
+      <p>Price: $8</p>
+      <button class="btn" onclick="addToCart('Product 2', 8)">Add to Cart</button>
+    </div>
+    <!-- Add more product cards as needed -->
+  </section>
+
+  <!-- Cart Section -->
+  <section class="cart">
+    <h2>Shopping Cart</h2>
+    <ul id="cart-items"></ul>
+    <p>Total: <span id="cart-total">$0</span></p>
+    <button class="btn" onclick="clearCart()">Clear Cart</button>
+  </section>
+
+  <!-- Footer Section -->
+  <footer>
+    <p>&copy; 2023 Grocery Store. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
